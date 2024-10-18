@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:37 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/18 10:07:53 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:22:35 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,21 @@ int	ft_isnbr(char *str)
 void	pars_error(void)
 {
 	printf("Error: arguments must be numbers\n");
+	printf("Error: time must be more than 60ms\n");
 	exit(1);
+}
+
+void	check_values(t_philo *philo)
+{
+	if (philo->t_die < 60 || philo->t_eat < 60 || philo->t_sleep < 60)
+		pars_error();
+	if (philo->t_die > INT_MAX || philo->t_eat > INT_MAX
+		|| philo->t_sleep > INT_MAX)
+		pars_error();
+	if (philo->philo_nbr < 1 || philo->philo_nbr > 200)
+		pars_error();
+	if (philo->meals_nbr < -1 || philo->meals_nbr > INT_MAX)
+		pars_error();
 }
 
 void	print_philo(t_philo *philo)

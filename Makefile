@@ -6,7 +6,7 @@
 #    By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 10:05:31 by mes-salh          #+#    #+#              #
-#    Updated: 2024/10/18 10:12:18 by mes-salh         ###   ########.fr        #
+#    Updated: 2024/10/18 10:25:59 by mes-salh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,5 +35,7 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+go: all clean
 
 .PHONY: all clean fclean re
