@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/18 10:05:31 by mes-salh          #+#    #+#              #
+#    Updated: 2024/10/18 10:12:18 by mes-salh         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = philo
 
-SRC = philo/philo.c
+SRC = philosofers.c tools.c
 
-HEADER = philo.h
+HEADER = philosofers.h
 
 OBJ = $(SRC:.c=.o)
 

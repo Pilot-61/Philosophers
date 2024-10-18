@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/mes-salh/Desktop/philo'
+cc -Wall -Wextra -Werror   -c -o philo/philo.o philo/philo.c
+cc -Wall -Wextra -Werror -o philo philo/philo.o 
+ 
+make: Leaving directory `/Users/mes-salh/Desktop/philo'
+ 
