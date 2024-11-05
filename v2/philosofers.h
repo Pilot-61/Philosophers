@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:36:12 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/30 16:49:04 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:14:54 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void    safe_mutex_destroy(pthread_mutex_t *mutex);
 void    safe_thread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg);
 void    safe_thread_join(pthread_t thread, void **retval);
 void    safe_thread_detach(pthread_t thread);
+void    init(t_data *data);
 #endif

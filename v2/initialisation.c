@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:16:55 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/30 16:50:14 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/05 20:54:10 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ static void init_forks(t_philo *philo, t_forks *forks, int i)
     
     philos = philo->data->philo_nbr;
     philo->left_fork = &forks[i];
-    if (i == philos - 1)
+    philo->right_fork = &forks[(i + 1) % philos];
+    if (philo->philo_id % 2 == 0)
+    {
         philo->right_fork = &forks[i];
-    else
-        philo->right_fork = &forks[(i + 1) % philos];
+        philo->left_fork = &forks[(i + 1) % philos];
+    }
 }
 
 void    init(t_data *data)
@@ -32,10 +34,10 @@ void    init(t_data *data)
     i = -1;
     data->end = 1;
     data->philo = safe_malloc(sizeof(t_philo) * data->philo_nbr);
-    data->forks = safe_malloc(sizeof(t_forks) * data->philo_nbr);
+    data->forks->forks = safe_malloc(sizeof(t_forks) * data->philo_nbr);
     while (++i < data->philo_nbr)
     {
-        safe_mutex_init(data->forks[i].forks);
+        pthread_mutex_init(data->forks[i].forks, NULL);
         data->forks[i].fork_id = i;
     }
     i = -1;
