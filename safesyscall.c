@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools1.c                                           :+:      :+:    :+:   */
+/*   safesyscall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 10:39:41 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/27 18:17:38 by mes-salh         ###   ########.fr       */
+/*   Created: 2024/10/29 17:19:01 by mes-salh          #+#    #+#             */
+/*   Updated: 2024/11/06 04:27:18 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosofers.h"
 
-long long	mt(void)
+void	*safe_malloc(size_t size)
 {
-	struct timeval	time;
+	void	*ptr;
 
-	gettimeofday(&time, NULL);
-	return ((long long)time.tv_sec * 1000 + time.tv_usec / 1000);
+	ptr = malloc(size);
+	if (!ptr)
+	{
+		printf("Error: malloc failed\n");
+		exit(1);
+	}
+	return (ptr);
 }
-
-void	my_usleep(int time)
-{
-	long long	start;
-
-	start = mt();
-	while (mt() - start < time)
-		usleep(100);
-}
-

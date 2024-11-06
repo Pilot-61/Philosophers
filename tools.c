@@ -6,25 +6,43 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:37 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/10/18 10:22:35 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/06 04:27:35 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosofers.h"
 
+int	is_space(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r')
+		return (1);
+	return (0);
+}
+
 int	ft_atoi(char *str)
 {
 	int	i;
 	int	res;
+	int	sign;
 
 	i = 0;
 	res = 0;
+	sign = 1;
+	while (is_space(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
 	while (str[i])
 	{
 		res = res * 10 + str[i] - '0';
 		i++;
 	}
-	return (res);
+	return (res * sign);
 }
 
 int	ft_isnbr(char *str)
@@ -44,28 +62,33 @@ int	ft_isnbr(char *str)
 void	pars_error(void)
 {
 	printf("Error: arguments must be numbers\n");
-	printf("Error: time must be more than 60ms\n");
+	printf("Error: time must be more than 60ms and less than INT_MAX\n");
 	exit(1);
 }
 
-void	check_values(t_philo *philo)
+void	pars_values(t_data *data, char **av)
 {
-	if (philo->t_die < 60 || philo->t_eat < 60 || philo->t_sleep < 60)
+	if (ft_isnbr(av[1]) && ft_isnbr(av[2]) && ft_isnbr(av[3])
+		&& ft_isnbr(av[4]))
+	{
+		data->philo_nbr = ft_atoi(av[1]);
+		data->t_die = ft_atoi(av[2]) * 1e3;
+		data->t_eat = ft_atoi(av[3]) * 1e3;
+		data->t_sleep = ft_atoi(av[4]) * 1e3;
+		if (data->t_die < 6e4 || data->t_eat < 6e4 || data->t_sleep < 6e4)
+			pars_error();
+		if (av[5])
+		{
+			data->meals_nbr = ft_atoi(av[5]);
+			if (data->meals_nbr < 1)
+				pars_error();
+		}
+		else
+			data->meals_nbr = -1;
+		if (data->t_die > INT_MAX || data->t_eat > INT_MAX
+			|| data->t_sleep > INT_MAX)
+			pars_error();
+	}
+	else
 		pars_error();
-	if (philo->t_die > INT_MAX || philo->t_eat > INT_MAX
-		|| philo->t_sleep > INT_MAX)
-		pars_error();
-	if (philo->philo_nbr < 1 || philo->philo_nbr > 200)
-		pars_error();
-	if (philo->meals_nbr < -1 || philo->meals_nbr > INT_MAX)
-		pars_error();
-}
-
-void	print_philo(t_philo *philo)
-{
-	printf("philo_nbr: %d\n", philo->philo_nbr);
-	printf("t_die: %d\n", philo->t_die);
-	printf("t_eat: %d\n", philo->t_eat);
-	printf("t_sleep: %d\n", philo->t_sleep);
-	printf("meals_nbr: %d\n", philo->meals_nbr);
 }
