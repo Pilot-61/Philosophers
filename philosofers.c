@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:34 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/06 04:25:30 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:46:27 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,21 @@ void	print_data(t_data *data, t_philo philo)
 	printf("t_sleep: %ld\n", data->t_sleep);
 	printf("meals_nbr: %d\n", data->meals_nbr);
 	printf("id: %d\n", philo.philo_id);
-	printf("r: %p\n", &philo.right_fork->fork_id);
-	printf("l: %p\n", &philo.left_fork->fork_id);
+	printf("r: %d\n", philo.right_fork->fork_id);
+	printf("l: %d\n", philo.left_fork->fork_id);
+}
+
+void	clean_data(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->philo_nbr)
+		pthread_mutex_destroy(data->forks[i].forks);
+	free(data->forks);
+	free(data->philo);
+	pthread_mutex_destroy(&data->print);
+	pthread_mutex_destroy(&data->dead_mutex);
 }
 
 int	main(int ac, char **av)
@@ -32,12 +45,8 @@ int	main(int ac, char **av)
 	{
 		pars_values(&data, av);
 		init(&data);
-		for (int i = 0; i < data.philo_nbr; i++)
-			print_data(&data, data.philo[i]);
-		// start_eating(data);
-		// clean_table(data);
-		free(data.philo);
-		free(data.forks);
+		start_eating(&data);
+		clean_data(&data);
 	}
 	else
 	{

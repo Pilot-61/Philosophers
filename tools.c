@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:37 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/06 04:27:35 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/08 07:31:18 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	pars_values(t_data *data, char **av)
 		&& ft_isnbr(av[4]))
 	{
 		data->philo_nbr = ft_atoi(av[1]);
-		data->t_die = ft_atoi(av[2]) * 1e3;
-		data->t_eat = ft_atoi(av[3]) * 1e3;
-		data->t_sleep = ft_atoi(av[4]) * 1e3;
-		if (data->t_die < 6e4 || data->t_eat < 6e4 || data->t_sleep < 6e4)
+		data->t_die = ft_atoi(av[2]);
+		data->t_eat = ft_atoi(av[3]);
+		data->t_sleep = ft_atoi(av[4]);
+		if (data->t_die < 60 || data->t_eat < 60 || data->t_sleep < 60)
 			pars_error();
 		if (av[5])
 		{

@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:16:55 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/06 04:28:21 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/09 19:40:33 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ static void	init_forks(t_philo *philo, t_forks *forks, int i)
 	philos = philo->data->philo_nbr;
 	philo->right_fork = &forks[i];
 	philo->left_fork = &forks[(i + 1) % philos];
-	if (philo->philo_id % 2 == 0)
-	{
-		philo->left_fork = &forks[i];
-		philo->right_fork = &forks[(i + 1) % philos];
-	}
 }
 
 void	init(t_data *data)
@@ -33,6 +28,10 @@ void	init(t_data *data)
 
 	i = -1;
 	data->end = 1;
+	data->dead = 0;
+	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->dead_mutex, NULL);
+	pthread_mutex_init(&data->lastmmeal, NULL);
 	data->philo = safe_malloc(sizeof(t_philo) * data->philo_nbr);
 	data->forks = safe_malloc(sizeof(t_forks) * data->philo_nbr);
 	while (++i < data->philo_nbr)
@@ -46,8 +45,10 @@ void	init(t_data *data)
 	{
 		philo = &data->philo[i];
 		philo->philo_id = i + 1;
+		data->start = mt();
 		philo->meals_count = 0;
 		philo->max_meals = 0;
+		philo->last_meal = mt();
 		philo->data = data;
 		init_forks(philo, data->forks, i);
 	}
