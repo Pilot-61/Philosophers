@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 06:22:23 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/09 19:51:54 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:06:53 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_status(t_philo *philo, char *status)
 {
 	pthread_mutex_lock(&philo->data->print);
-	printf("%lld %d %s\n", mt() - philo->data->start, philo->philo_id, status);
+	printf("%lld %d %s\n", mt() - philo->last_meal, philo->philo_id, status);
 	pthread_mutex_unlock(&philo->data->print);
 }
 
@@ -74,6 +74,9 @@ void	*routine(void *arg)
 		}
 		print_status(philo, "is eating");
 		philo->meals_count++;
+		if (philo->data->meals_nbr != -1
+			&& philo->meals_count >= philo->data->meals_nbr)
+			return (NULL);
 		pthread_mutex_lock(&philo->data->lastmmeal);
 		if (check_dead(philo->data))
 		{

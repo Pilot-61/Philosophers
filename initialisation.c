@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:16:55 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/09 19:40:33 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:07:44 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	init(t_data *data)
 	t_philo	*philo;
 
 	i = -1;
-	data->end = 1;
 	data->dead = 0;
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->dead_mutex, NULL);
@@ -45,9 +44,7 @@ void	init(t_data *data)
 	{
 		philo = &data->philo[i];
 		philo->philo_id = i + 1;
-		data->start = mt();
 		philo->meals_count = 0;
-		philo->max_meals = 0;
 		philo->last_meal = mt();
 		philo->data = data;
 		init_forks(philo, data->forks, i);

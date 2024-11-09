@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:36:12 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/09 19:50:44 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:07:25 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_philo
 {
 	int			philo_id;
 	int			meals_count;
-	int			max_meals;
 	long long	last_meal;
 	t_forks		*left_fork;
 	t_forks		*right_fork;
@@ -48,8 +47,6 @@ typedef struct s_data
 	long			t_sleep;
 	int				meals_nbr;
 	int				dead;
-	long long		start;
-	long long		end;
 	pthread_mutex_t	print;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	lastmmeal;
