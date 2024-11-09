@@ -31,10 +31,6 @@ The dining philosophers problem is a classic computer science problem that illus
 # For mandatory part
 cd philo
 make
-
-# For bonus part
-cd philo_bonus
-make
 ```
 
 ### Execution
