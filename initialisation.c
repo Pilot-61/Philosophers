@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:16:55 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 04:36:15 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:43:27 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ void	pthread_init(t_data *data)
 {
 	data->dead = 0;
 	data->start = mt();
+	data->current_meals = 0;
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->dead_mutex, NULL);
 	pthread_mutex_init(&data->lastmmeal, NULL);
+	pthread_mutex_init(&data->meals_mutex, NULL);
 	data->philo = safe_malloc(sizeof(t_philo) * data->philo_nbr);
 	data->forks = safe_malloc(sizeof(t_forks) * data->philo_nbr);
 }

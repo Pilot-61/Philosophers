@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:36:12 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 04:37:38 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:47:23 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ typedef struct s_data
 	pthread_mutex_t	print;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	lastmmeal;
+	pthread_mutex_t	meals_mutex;
 	t_philo			*philo;
 	t_forks			*forks;
 	int				meals_completed;
 	long long		current_time;
 	long long		last_meal_time;
+	long long		current_meals;
 }	t_data;
 
 int			ft_isnbr(char *str);
@@ -77,4 +79,6 @@ void		check_take_fork(t_philo *philo, t_forks *first_fork,
 				t_forks *second_fork);
 int			check_dead(t_data *data);
 int			print_status(t_philo *philo, char *status);
+void		last_meal(t_data *data, t_philo *philo, int i);
+void		lock_meals_mutex(t_data *data, int i);
 #endif

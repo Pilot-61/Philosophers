@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 06:22:23 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 04:38:37 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:46:14 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ void	*death_monitor(void *arg)
 		data->meals_completed = 0;
 		while (++i < data->philo_nbr)
 		{
-			pthread_mutex_lock(&data->lastmmeal);
-			data->last_meal_time = data->philo[i].last_meal;
-			data->current_time = mt();
-			pthread_mutex_unlock(&data->lastmmeal);
+			last_meal(data, &data->philo[i], i);
 			if (data->current_time - data->last_meal_time > data->t_die)
 				return (die(data, &data->philo[i]), NULL);
-			if (data->meals_nbr != -1
-				&& data->philo[i].meals_count >= data->meals_nbr)
-				data->meals_completed++;
+			if (data->meals_nbr != -1)
+			{
+				lock_meals_mutex(data, i);
+				if (data->current_meals >= data->meals_nbr)
+					data->meals_completed++;
+			}
 			if (data->meals_nbr != -1
 				&& data->meals_completed == data->philo_nbr)
 				return (max_meals(data), NULL);

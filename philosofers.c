@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:34 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/09 19:46:27 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:23:32 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int ac, char **av)
 	else
 	{
 		printf("Error: wrong number of arguments\n");
-		exit(1);
+		return (1);
 	}
+	return (0);
 }

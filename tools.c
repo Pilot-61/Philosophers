@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:37 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/08 07:31:18 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:23:47 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	pars_error(void)
 {
 	printf("Error: arguments must be numbers\n");
 	printf("Error: time must be more than 60ms and less than INT_MAX\n");
-	exit(1);
+	return ;
 }
 
 void	pars_values(t_data *data, char **av)

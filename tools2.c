@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 04:32:54 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 04:39:44 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:34:56 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ void	check_take_fork(t_philo *philo, t_forks *first_fork, t_forks *sfork)
 
 void	check_is_eating(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->data->lastmmeal);
-	philo->last_meal = mt();
-	pthread_mutex_unlock(&philo->data->lastmmeal);
 	if (print_status(philo, "is eating"))
 	{
 		pthread_mutex_unlock(philo->right_fork->forks);
@@ -51,7 +48,9 @@ void	check_is_eating(t_philo *philo)
 		return ;
 	}
 	my_usleep(philo->data->t_eat);
+	pthread_mutex_lock(&philo->data->meals_mutex);
 	philo->meals_count++;
+	pthread_mutex_unlock(&philo->data->meals_mutex);
 	pthread_mutex_unlock(philo->right_fork->forks);
 	pthread_mutex_unlock(philo->left_fork->forks);
 }
