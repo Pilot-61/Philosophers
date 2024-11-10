@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:36:12 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 05:52:10 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 06:28:18 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_data
 
 int			ft_isnbr(char *str);
 int			ft_atoi(char *str);
-int			pars_error(void);
+void		pars_error(void);
 int			pars_values(t_data *data, char **av);
 void		my_usleep(int time);
 void		*safe_malloc(size_t size);

@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:37 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 05:57:07 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 07:39:00 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_atoi(char *str)
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			sign = -1;
+			return (-1);
 		i++;
 	}
 	while (str[i])
@@ -73,22 +73,21 @@ int	pars_values(t_data *data, char **av)
 	if (ft_isnbr(av[1]) && ft_isnbr(av[2]) && ft_isnbr(av[3])
 		&& ft_isnbr(av[4]))
 	{
-		if (data->t_die < 60 || data->t_eat < 60 || data->t_sleep < 60)
-			if (pars_error())
-				return (1);
+		if (data->t_die < 60 || data->t_eat < 60 || data->t_sleep < 60
+			|| data->philo_nbr > 200 || data->philo_nbr <= 0)
+			return (pars_error(), 1);
 		if (av[5])
 		{
 			data->meals_nbr = ft_atoi(av[5]);
 			if (data->meals_nbr < 1)
-				if (pars_error())
-					return (1);
+				return (pars_error(), 1);
 		}
 		else
 			data->meals_nbr = -1;
 		if (data->t_die > INT_MAX || data->t_eat > INT_MAX
 			|| data->t_sleep > INT_MAX)
-			if (pars_error())
-				return (1);
+			return (pars_error(), 1);
+		return (0);
 	}
-	return (0);
+	return (1);
 }

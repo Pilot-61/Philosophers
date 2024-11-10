@@ -6,7 +6,7 @@
 #    By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 10:05:31 by mes-salh          #+#    #+#              #
-#    Updated: 2024/11/10 05:47:47 by mes-salh         ###   ########.fr        #
+#    Updated: 2024/11/10 06:41:18 by mes-salh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER = philosofers.h
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g
 
 TFLAGS = -pthread
 all: $(NAME)

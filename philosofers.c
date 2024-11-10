@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:34 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 05:58:13 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 06:45:35 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	clean_data(t_data *data)
 	free(data->forks);
 	free(data->philo);
 	pthread_mutex_destroy(&data->print);
+	pthread_mutex_destroy(&data->lastmmeal);
+	pthread_mutex_destroy(&data->meals_mutex);
 	pthread_mutex_destroy(&data->dead_mutex);
 }
 
