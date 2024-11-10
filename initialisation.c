@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:16:55 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/09 20:07:44 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 04:36:15 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,24 @@ static void	init_forks(t_philo *philo, t_forks *forks, int i)
 	philo->left_fork = &forks[(i + 1) % philos];
 }
 
+void	pthread_init(t_data *data)
+{
+	data->dead = 0;
+	data->start = mt();
+	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->dead_mutex, NULL);
+	pthread_mutex_init(&data->lastmmeal, NULL);
+	data->philo = safe_malloc(sizeof(t_philo) * data->philo_nbr);
+	data->forks = safe_malloc(sizeof(t_forks) * data->philo_nbr);
+}
+
 void	init(t_data *data)
 {
 	int		i;
 	t_philo	*philo;
 
 	i = -1;
-	data->dead = 0;
-	pthread_mutex_init(&data->print, NULL);
-	pthread_mutex_init(&data->dead_mutex, NULL);
-	pthread_mutex_init(&data->lastmmeal, NULL);
-	data->philo = safe_malloc(sizeof(t_philo) * data->philo_nbr);
-	data->forks = safe_malloc(sizeof(t_forks) * data->philo_nbr);
+	pthread_init(data);
 	while (++i < data->philo_nbr)
 	{
 		data->forks[i].forks = safe_malloc(sizeof(pthread_mutex_t));

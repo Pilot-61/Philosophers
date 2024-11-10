@@ -6,13 +6,13 @@
 #    By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/18 10:05:31 by mes-salh          #+#    #+#              #
-#    Updated: 2024/11/09 19:48:16 by mes-salh         ###   ########.fr        #
+#    Updated: 2024/11/10 04:33:58 by mes-salh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC = philosofers.c initialisation.c safesyscall.c tools.c tools1.c routine.c
+SRC = philosofers.c initialisation.c safesyscall.c tools.c tools1.c tools2.c routine.c
 
 HEADER = philosofers.h
 

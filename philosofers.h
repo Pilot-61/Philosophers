@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:36:12 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/09 20:07:25 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 04:37:38 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,15 @@ typedef struct s_data
 	long			t_sleep;
 	int				meals_nbr;
 	int				dead;
+	long long		start;
 	pthread_mutex_t	print;
 	pthread_mutex_t	dead_mutex;
 	pthread_mutex_t	lastmmeal;
 	t_philo			*philo;
 	t_forks			*forks;
+	int				meals_completed;
+	long long		current_time;
+	long long		last_meal_time;
 }	t_data;
 
 int			ft_isnbr(char *str);
@@ -63,4 +67,14 @@ void		*safe_malloc(size_t size);
 void		init(t_data *data);
 long long	mt(void);
 void		start_eating(t_data *data);
+int			check_dead(t_data *data);
+void		max_meals(t_data *data);
+void		die(t_data *data, t_philo *philo);
+void		set_last_meal(t_philo *philo);
+void		check_is_sleeping(t_philo *philo);
+void		check_is_eating(t_philo *philo);
+void		check_take_fork(t_philo *philo, t_forks *first_fork,
+				t_forks *second_fork);
+int			check_dead(t_data *data);
+int			print_status(t_philo *philo, char *status);
 #endif
