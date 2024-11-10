@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:37 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 05:23:47 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:57:07 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,36 @@ int	ft_isnbr(char *str)
 	return (1);
 }
 
-void	pars_error(void)
+void	init_times(t_data *data, char **av)
 {
-	printf("Error: arguments must be numbers\n");
-	printf("Error: time must be more than 60ms and less than INT_MAX\n");
-	return ;
+	data->philo_nbr = ft_atoi(av[1]);
+	data->t_die = ft_atoi(av[2]);
+	data->t_eat = ft_atoi(av[3]);
+	data->t_sleep = ft_atoi(av[4]);
 }
 
-void	pars_values(t_data *data, char **av)
+int	pars_values(t_data *data, char **av)
 {
+	init_times(data, av);
 	if (ft_isnbr(av[1]) && ft_isnbr(av[2]) && ft_isnbr(av[3])
 		&& ft_isnbr(av[4]))
 	{
-		data->philo_nbr = ft_atoi(av[1]);
-		data->t_die = ft_atoi(av[2]);
-		data->t_eat = ft_atoi(av[3]);
-		data->t_sleep = ft_atoi(av[4]);
 		if (data->t_die < 60 || data->t_eat < 60 || data->t_sleep < 60)
-			pars_error();
+			if (pars_error())
+				return (1);
 		if (av[5])
 		{
 			data->meals_nbr = ft_atoi(av[5]);
 			if (data->meals_nbr < 1)
-				pars_error();
+				if (pars_error())
+					return (1);
 		}
 		else
 			data->meals_nbr = -1;
 		if (data->t_die > INT_MAX || data->t_eat > INT_MAX
 			|| data->t_sleep > INT_MAX)
-			pars_error();
+			if (pars_error())
+				return (1);
 	}
-	else
-		pars_error();
+	return (0);
 }

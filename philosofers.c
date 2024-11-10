@@ -6,7 +6,7 @@
 /*   By: mes-salh <mes-salh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:38:34 by mes-salh          #+#    #+#             */
-/*   Updated: 2024/11/10 05:23:32 by mes-salh         ###   ########.fr       */
+/*   Updated: 2024/11/10 05:58:13 by mes-salh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	main(int ac, char **av)
 
 	if (ac == 5 || ac == 6)
 	{
-		pars_values(&data, av);
+		if (pars_values(&data, av))
+			return (1);
 		init(&data);
 		start_eating(&data);
 		clean_data(&data);
