@@ -33,6 +33,19 @@ cd philo
 make
 ```
 
+### Execution
+```bash
+./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
+```
+
+### Arguments
+1. `number_of_philosophers`: Number of philosophers and forks
+2. `time_to_die` (in ms): Maximum time since start of their last meal or the simulation before a philosopher dies
+3. `time_to_eat` (in ms): Time it takes to eat (must hold two forks)
+4. `time_to_sleep` (in ms): Time spent sleeping
+5. `[number_of_times_each_philosopher_must_eat]` (optional): If specified, simulation stops when all philosophers eat at least this many times
+
+
 ### how to use the tester for mandatory
 ```bash
 # Run all tests (500+)
@@ -45,17 +58,6 @@ make
 ./tester.sh random
 ```
 
-### Execution
-```bash
-./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
-```
-
-### Arguments
-1. `number_of_philosophers`: Number of philosophers and forks
-2. `time_to_die` (in ms): Maximum time since start of their last meal or the simulation before a philosopher dies
-3. `time_to_eat` (in ms): Time it takes to eat (must hold two forks)
-4. `time_to_sleep` (in ms): Time spent sleeping
-5. `[number_of_times_each_philosopher_must_eat]` (optional): If specified, simulation stops when all philosophers eat at least this many times
 
 ## Implementation Details
 
