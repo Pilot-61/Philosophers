@@ -33,6 +33,18 @@ cd philo
 make
 ```
 
+### how to use the tester for mandatory
+```bash
+# Run all tests (500+)
+./tester.sh
+
+# Run basic test only
+./tester.sh basic
+
+# Run 50 random tests
+./tester.sh random
+```
+
 ### Execution
 ```bash
 ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
